@@ -6,6 +6,7 @@ def white_noise(fs, length):
   # 一様乱数
   return np.random.random(size=length) * 2 - 1
 
+# ローパス * ハイパス
 def pink_noise(fs, length):
   tmp = white_noise(fs, length)
   # 周波数領域の値に変換
@@ -16,7 +17,7 @@ def pink_noise(fs, length):
   S = S * fil
   # 逆FFTにより音声に戻す
   s = np.fft.irfft(S)
-  # 音声のピークの箇所を割って
+  # 一番大きい箇所の振幅で割る
   s /= np.max(np.abs(s))
   return s
 
