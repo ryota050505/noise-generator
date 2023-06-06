@@ -12,7 +12,9 @@ def pink_noise(fs, length):
   # 周波数領域の値に変換
   S = np.fft.rfft(tmp)
   # 低周波ほどfilterが小さい
-  fil = 1 / (np.arange(len(S)) + 1)
+  arr = np.concatenate([np.arange(len(S)/2) + 1, np.arange(len(S)/2 - 2, -1, -1) + 1])
+  fil = 1 / arr
+  # fil = 1 / (np.arange(len(S)) + 1)
   # 高周波になるほど値が小さくなる
   S = S * fil
   # 逆FFTにより音声に戻す
