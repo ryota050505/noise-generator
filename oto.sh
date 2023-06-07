@@ -1,3 +1,5 @@
-eval "python ./generate.py"
+FILENAME="test3.wav"
 
-eval "python ./play.py"
+eval "python ./generate.py ${FILENAME}"
+
+eval "python ./play.py ${FILENAME}"
